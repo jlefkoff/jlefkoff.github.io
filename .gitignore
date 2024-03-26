@@ -67,3 +67,9 @@ node_modules/
 .DS_Store
 .DS_Store
 public/.DS_Store
+
+/resources/_gen/
+
+hugo.exe
+hugo.linux
+hugo.darwin
