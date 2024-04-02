@@ -1,0 +1,5752 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Shermbowski - grook-a-most-day</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+            font-weight: 300;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+            font-weight: 400;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+            font-weight: 500;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+            font-weight: 600;
+        }
+
+        @font-face {
+            font-family: Whitney;
+            src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+            font-weight: 700;
+        }
+
+        body {
+            background-color: #ffffff;
+            color: #23262a;
+            font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 17px;
+            font-weight: 500;
+        }
+
+        a {
+            color: #0068e0;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        img {
+            object-fit: contain;
+        }
+
+        .markdown {
+            max-width: 100%;
+            line-height: 1.3;
+            overflow-wrap: break-word;
+        }
+
+        .preserve-whitespace {
+            white-space: pre-wrap;
+        }
+
+        .spoiler-text {
+            background-color: rgba(0, 0, 0, 0.1);
+            border-radius: 3px;
+        }
+
+        .spoiler-text--hidden {
+            cursor: pointer;
+            background-color: #b9bbbe;
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .spoiler-text--hidden:hover {
+            background-color: rgba(185, 187, 190, 0.8);
+        }
+
+        .spoiler-text--hidden::selection {
+            color: rgba(0, 0, 0, 0);
+        }
+
+        .quote {
+            display: flex;
+            margin: 0.05em 0;
+        }
+
+        .quote::before {
+            content: "";
+            margin-right: 0.5em;
+            border: 2px solid #c7ccd1;
+            border-radius: 3px;
+        }
+
+        .pre {
+            background-color: #f9f9f9;
+            font-family: "Consolas", "Courier New", Courier, monospace;
+        }
+
+        .pre--multiline {
+            margin-top: 0.25em;
+            padding: 0.5em;
+            border: 2px solid #f3f3f3;
+            border-radius: 5px;
+            color: #657b83;
+        }
+
+        .pre--multiline.hljs {
+            background-color: #f9f9f9;
+            color: #657b83;
+        }
+
+        .pre--inline {
+            padding: 2px;
+            border-radius: 3px;
+            font-size: 0.85em;
+        }
+
+        .mention {
+            border-radius: 3px;
+            padding: 0 2px;
+            color: #7289da;
+            background-color: rgba(114, 137, 218, .1);
+            font-weight: 500;
+        }
+
+        .timestamp {
+            border-radius: 3px;
+            padding: 0 2px;
+            background-color: rgba(6, 6, 7, 0.08);
+        }
+
+        .emoji {
+            width: 1.325em;
+            height: 1.325em;
+            margin: 0 0.06em;
+            vertical-align: -0.4em;
+        }
+
+        .emoji--small {
+            width: 1em;
+            height: 1em;
+        }
+
+        .emoji--large {
+            width: 2.8em;
+            height: 2.8em;
+        }
+
+        .preamble {
+            display: grid;
+            margin: 0 0.3em 0.6em 0.3em;
+            max-width: 100%;
+            grid-template-columns: auto 1fr;
+        }
+
+        .preamble__guild-icon-container {
+            grid-column: 1;
+        }
+
+        .preamble__guild-icon {
+            max-width: 88px;
+            max-height: 88px;
+        }
+
+        .preamble__entries-container {
+            grid-column: 2;
+            margin-left: 0.6em;
+        }
+
+        .preamble__entry {
+            font-size: 1.4em;
+            color: #2f3136;
+        }
+
+        .preamble__entry--small {
+            font-size: 1em;
+        }
+
+        .chatlog {
+            max-width: 100%;
+        }
+
+        .chatlog__message-group {
+            display: grid;
+            margin: 0 0.6em;
+            padding: 0.9em 0;
+            border-top: 1px solid #eceeef;
+            grid-template-columns: auto 1fr;
+        }
+
+        .chatlog__reference-symbol {
+            grid-column: 1;
+            margin: 8px 4px 4px 18px;
+            border-left: 2px solid #c7ccd1;
+            border-top: 2px solid #c7ccd1;
+            border-radius: 8px 0 0 0;
+        }
+
+        .chatlog__reference {
+            display: flex;
+            grid-column: 2;
+            margin-bottom: 0.25em;
+            font-size: 0.875em;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            align-items: center;
+            color: #5f5f60;
+        }
+
+        .chatlog__reference-avatar {
+            border-radius: 50%;
+            width: 16px;
+            height: 16px;
+            margin-right: 0.25em;
+        }
+
+        .chatlog__reference-name {
+            margin-right: 0.3em;
+            font-weight: 600;
+        }
+
+        .chatlog__reference-content {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__reference-content a:hover {
+            text-decoration: none;
+        }
+
+        .chatlog__reference-link {
+            cursor: pointer;
+            color: #5f5f60;
+        }
+
+        .chatlog__reference-link * {
+            display: inline;
+            pointer-events: none;
+        }
+
+        .chatlog__reference-link:hover {
+            color: #2f3136;
+        }
+
+        .chatlog__reference-link:hover *:not(.spoiler-text) {
+            color: #2f3136;
+        }
+
+        .chatlog__reference-edited-timestamp {
+            margin-left: 0.25em;
+            font-size: 0.8em;
+            color: #747f8d;
+        }
+
+        .chatlog__author-avatar-container {
+            grid-column: 1;
+            width: 40px;
+            height: 40px;
+            margin-right: 16px;
+        }
+
+        .chatlog__author-avatar {
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+
+        .chatlog__messages {
+            grid-column: 2;
+            min-width: 50%;
+        }
+
+        .chatlog__author-name {
+            font-weight: 600;
+            color: #2f3136;
+        }
+
+        .chatlog__timestamp {
+            margin-left: 0.3em;
+            font-size: 0.75em;
+            color: #747f8d;
+        }
+
+        .chatlog__message {
+            padding: 0.1em 0.3em;
+            margin: 0 -0.3em;
+            background-color: transparent;
+            transition: background-color 1s ease;
+        }
+
+        .chatlog__message--highlighted {
+            background-color: rgba(114, 137, 218, 0.2);
+        }
+
+        .chatlog__message--pinned {
+            background-color: rgba(249, 168, 37, 0.05);
+        }
+
+        .chatlog__content {
+            font-size: 0.95em;
+            word-wrap: break-word;
+        }
+
+        .chatlog__edited-timestamp {
+            margin-left: 0.15em;
+            font-size: 0.8em;
+        }
+
+        .chatlog__attachment {
+            display: inline-block;
+            position: relative;
+            margin-top: 0.3em;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden {
+            cursor: pointer;
+            box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .chatlog__attachment--hidden * {
+            pointer-events: none;
+        }
+
+        .chatlog__attachment-spoiler-caption {
+            display: none;
+            z-index: 999;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 0.4em 0.8em;
+            background-color: rgba(0, 0, 0, 0.9);
+            border-radius: 20px;
+            color: #dcddde;
+            font-size: 0.9em;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-spoiler-caption {
+            display: block;
+        }
+
+        .chatlog__attachment--hidden:hover .chatlog__attachment-spoiler-caption {
+            color: #fff;
+        }
+
+        .chatlog__attachment-media {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-media {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic {
+            width: 100%;
+            max-width: 520px;
+            height: 40px;
+            padding: 10px;
+            background-color: #f2f3f5;
+            border: 1px solid #ebedef;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .chatlog__attachment--hidden .chatlog__attachment-generic {
+            filter: blur(44px);
+        }
+
+        .chatlog__attachment-generic-icon {
+            float: left;
+            width: 30px;
+            height: 100%;
+            margin-right: 10px;
+        }
+
+        .chatlog__attachment-generic-size {
+            color: #72767d;
+            font-size: 12px;
+        }
+
+        .chatlog__attachment-generic-name {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .chatlog__edited-timestamp {
+            color: #747f8d;
+        }
+
+        .chatlog__embed {
+            display: flex;
+            margin-top: 0.3em;
+            max-width: 520px;
+        }
+
+        .chatlog__embed-color-pill {
+            flex-shrink: 0;
+            width: 0.25em;
+            border-top-left-radius: 3px;
+            border-bottom-left-radius: 3px;
+        }
+
+        .chatlog__embed-color-pill--default {
+            background-color: rgba(227, 229, 232, 1);
+        }
+
+        .chatlog__embed-content-container {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5em 0.6em;
+            background-color: rgba(249, 249, 249, 0.3);
+            border: 1px solid rgba(204, 204, 204, 0.3);
+            border-top-right-radius: 3px;
+            border-bottom-right-radius: 3px;
+        }
+
+        .chatlog__embed-content {
+            display: flex;
+            width: 100%;
+        }
+
+        .chatlog__embed-text {
+            flex: 1;
+        }
+
+        .chatlog__embed-author {
+            display: flex;
+            margin-bottom: 0.3em;
+            align-items: center;
+        }
+
+        .chatlog__embed-author-icon {
+            margin-right: 0.5em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+
+        .chatlog__embed-author-name {
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #4f545c
+        }
+
+        .chatlog__embed-author-name-link {
+            color: #4f545c;
+        }
+
+        .chatlog__embed-title {
+            margin-bottom: 0.2em;
+            font-size: 0.875em;
+            font-weight: 600;
+            color: #4f545c;
+        }
+
+        .chatlog__embed-description {
+            font-weight: 500;
+            font-size: 0.85em;
+            color: #2e3338;
+        }
+
+        .chatlog__embed-fields {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0 0.5em;
+        }
+
+        .chatlog__embed-field {
+            flex: 0;
+            min-width: 100%;
+            max-width: 506px;
+            padding-top: 0.6em;
+            font-size: 0.875em;
+        }
+
+        .chatlog__embed-field--inline {
+            flex: 1;
+            flex-basis: auto;
+            min-width: 150px;
+        }
+
+        .chatlog__embed-field-name {
+            margin-bottom: 0.2em;
+            font-weight: 600;
+            color: #36393e;
+        }
+
+        .chatlog__embed-field-value {
+            font-weight: 500;
+            color: #2e3338;
+        }
+
+        .chatlog__embed-thumbnail {
+            flex: 0;
+            margin-left: 1.2em;
+            max-width: 80px;
+            max-height: 80px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-image-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-image {
+            max-width: 500px;
+            max-height: 400px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-footer {
+            margin-top: 0.6em;
+            color: #2e3338;
+        }
+
+        .chatlog__embed-footer-icon {
+            margin-right: 0.2em;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            vertical-align: middle;
+        }
+
+        .chatlog__embed-footer-text {
+            vertical-align: middle;
+            font-size: 0.75em;
+            font-weight: 500;
+        }
+
+        .chatlog__embed-plainimage {
+            vertical-align: top;
+            max-width: 45vw;
+            max-height: 500px;
+            border-radius: 3px;
+        }
+
+        .chatlog__embed-spotify {
+            border: 0;
+        }
+
+        .chatlog__embed-youtube-container {
+            margin-top: 0.6em;
+        }
+
+        .chatlog__embed-youtube {
+            border: 0;
+            border-radius: 3px;
+        }
+
+        .chatlog__reactions {
+            display: flex;
+        }
+
+        .chatlog__reaction {
+            display: flex;
+            align-items: center;
+            margin: 0.35em 0.1em 0.1em 0.1em;
+            padding: 0.2em 0.35em;
+            background-color: rgba(79, 84, 92, 0.06);
+            border-radius: 3px;
+        }
+
+        .chatlog__reaction-count {
+            min-width: 9px;
+            margin-left: 0.35em;
+            font-size: 0.875em;
+            color: #747f8d;
+        }
+
+        .chatlog__bot-tag {
+            position: relative;
+            top: -.1em;
+            margin-left: 0.3em;
+            padding: 0.05em 0.3em;
+            border-radius: 3px;
+            line-height: 1.3;
+            background-color: #5865F2;
+            color: #ffffff;
+            font-size: 0.625em;
+            font-weight: 500;
+        }
+
+        .postamble {
+            margin: 1.4em 0.3em 0.6em 0.3em;
+            padding: 1em;
+            border-top: 1px solid #eceeef;
+        }
+
+        .postamble__entry {
+            color: #2f3136;
+        }
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-light.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler-text--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler-text--hidden');
+            }
+            if (element && element.classList.contains('chatlog__attachment--hidden')) {
+                event.preventDefault();
+                element.classList.remove('chatlog__attachment--hidden');
+            }
+        }
+    </script>
+
+    <svg style="display: none">
+        <symbol id="icon-attachment" viewBox="0 0 720 960">
+            <path fill="#f4f5fb" d="M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z" />
+            <path fill="#7789c4" d="M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z" />
+            <path fill="#f4f5fb" d="M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z" />
+            <path fill="#7789c4" d="M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z" />
+        </symbol>
+    </svg>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="https://cdn.discordapp.com/icons/725227471775072307/ac8975596fdf9afa1161791bdfefc271.png" alt="Guild icon" loading="lazy">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Shermbowski</div>
+        <div class="preamble__entry">--- For Humans --- / grook-a-most-day</div>
+
+            <div class="preamble__entry preamble__entry--small">Here I post a Grook from the collection of Piet Hein each day.</div>
+
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">27-May-21 11:19 PM</span>
+
+            <div class="chatlog__message " data-message-id="847675511588782101" id="message-847675511588782101" title="Message sent: 27-May-21 11:19 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Problems worthy 
+of attack 
+prove their worth 
+by hitting back. 
+
+5/27/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">29-May-21 12:37 AM</span>
+
+            <div class="chatlog__message " data-message-id="848057514351132683" id="message-848057514351132683" title="Message sent: 29-May-21 12:37 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Put up in a place 
+where it&#39;s easy to see 
+the cryptic admonishment 
+      T.T.T. 
+
+When you feel how depressingly 
+slowly you climb, 
+it&#39;s well to remember that 
+      Things Take Time. 
+
+5/28/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">29-May-21 03:27 PM</span>
+
+            <div class="chatlog__message " data-message-id="848281413202608149" id="message-848281413202608149" title="Message sent: 29-May-21 03:27 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The road to wisdom? - Well, it&#39;s plain and simple to express: 
+   Err 
+   and err 
+   and err again 
+   but less 
+   and less 
+   and less. 
+
+5/29/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">07-Jun-21 11:03 PM</span>
+
+            <div class="chatlog__message " data-message-id="851657741147832341" id="message-851657741147832341" title="Message sent: 07-Jun-21 11:03 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The way to grow grand  
+is not: to demand.  
+In life&#39;s every field  
+you are what you yield.  
+
+6/7/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">08-Jun-21 06:44 PM</span>
+
+            <div class="chatlog__message " data-message-id="851954866196185119" id="message-851954866196185119" title="Message sent: 08-Jun-21 06:44 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">There is  
+one art, 
+no more,  
+no less: 
+to do  
+all things  
+with art- 
+lessness. 
+
+6/8/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">09-Jun-21 12:18 PM</span>
+
+            <div class="chatlog__message " data-message-id="852220158800822272" id="message-852220158800822272" title="Message sent: 09-Jun-21 12:18 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>The Miracle of Spring</strong>
+
+We glibly talk
+of nature&#39;s laws
+but do things have
+a natural cause?
+Black earth turned into
+yellow crocus
+in undiluted
+hocus-pocus.
+
+6/9/21</span>
+
+                                <span class="chatlog__edited-timestamp" title="09-Jun-21 12:18 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">10-Jun-21 09:41 AM</span>
+
+            <div class="chatlog__message " data-message-id="852543014589300816" id="message-852543014589300816" title="Message sent: 10-Jun-21 09:41 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Two Words</strong>
+ 
+Two words express
+My love galore:
+Nevertheless,
+Alwaysthemore
+
+6/10/21</span>
+
+                                <span class="chatlog__edited-timestamp" title="10-Jun-21 09:41 AM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">11-Jun-21 10:11 PM</span>
+
+            <div class="chatlog__message " data-message-id="853094068120453120" id="message-853094068120453120" title="Message sent: 11-Jun-21 10:11 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>A Psychological Tip</strong>
+
+Whenever you&#39;re called on to make up your mind,
+and you&#39;re hampered by not having any,
+the best way to solve the dilemma, you&#39;ll find,
+is simply by spinning a penny.
+
+No - not so that chance shall decide the affair
+while you&#39;re passively standing there moping;
+but the moment the penny is up in the air,
+you suddenly know what you&#39;re hoping
+
+6/11/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">13-Jun-21 12:19 AM</span>
+
+            <div class="chatlog__message " data-message-id="853488748268486666" id="message-853488748268486666" title="Message sent: 13-Jun-21 12:19 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>A Word to the Wise</strong>
+
+Let the world pass in its time-ridden race;
+   never get caught in its snare.
+
+Remember, the only acceptable case
+for being in any particular place
+   is having no business there.
+
+6/12/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">13-Jun-21 01:36 PM</span>
+
+            <div class="chatlog__message " data-message-id="853689370161840158" id="message-853689370161840158" title="Message sent: 13-Jun-21 01:36 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Living is
+   a thing you do
+now or never --
+   which do you?
+
+6/13/21</span>
+
+                        </div>
+                    </div>
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="https://cdn.discordapp.com/attachments/847675036403367946/853689370035617802/unknown.gif">
+                                <img class="chatlog__attachment-media" src="https://cdn.discordapp.com/attachments/847675036403367946/853689370035617802/unknown.gif" alt="Image attachment" title="Image: unknown.gif (1.6 KB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">14-Jun-21 10:18 AM</span>
+
+            <div class="chatlog__message " data-message-id="854001873095098448" id="message-854001873095098448" title="Message sent: 14-Jun-21 10:18 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>The Eternal Twins</strong>
+
+Taking fun
+  as simply fun
+and earnestness
+  in earnest
+shows how thoroughly
+  thou none
+of the two
+  discernest.
+
+6/14/21</span>
+
+                                <span class="chatlog__edited-timestamp" title="14-Jun-21 10:18 AM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">15-Jun-21 06:37 PM</span>
+
+            <div class="chatlog__message " data-message-id="854489895434190848" id="message-854489895434190848" title="Message sent: 15-Jun-21 06:37 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Consolation Grook</strong>
+
+Losing one glove
+is certainly painful,
+but nothing
+   compared to the pain,
+of losing one,
+throwing away the other,
+and finding
+   the first one again.
+
+6/15/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">16-Jun-21 09:11 PM</span>
+
+            <div class="chatlog__message " data-message-id="854890859647991868" id="message-854890859647991868" title="Message sent: 16-Jun-21 09:11 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Omniscience</strong>
+ 
+Knowing what
+thou knowest not
+is in a sense
+omniscience.
+
+6/16/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">17-Jun-21 02:17 PM</span>
+
+            <div class="chatlog__message " data-message-id="855149180359409724" id="message-855149180359409724" title="Message sent: 17-Jun-21 02:17 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Simply Assisting God</strong>
+
+I am a humble artist
+moulding my earthly clod,
+adding my labour to nature&#39;s,
+simply assisting God.
+ 
+Not that my effort is needed;
+yet somehow, I understand,
+my maker has willed it that I too should have
+unmoulded clay in my hand.
+
+6/17/21</span>
+
+                                <span class="chatlog__edited-timestamp" title="17-Jun-21 02:17 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">18-Jun-21 05:24 PM</span>
+
+            <div class="chatlog__message " data-message-id="855558659219521539" id="message-855558659219521539" title="Message sent: 18-Jun-21 05:24 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Hint and Suggestion</strong>
+<em>Admonitory grook addressed to youth.</em>
+ 
+The human spirit sublimates
+the impulses it thwarts;
+a healthy sex life mitigates
+the lust for other sports.
+
+6/18/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">19-Jun-21 10:41 PM</span>
+
+            <div class="chatlog__message " data-message-id="856000802061942814" id="message-856000802061942814" title="Message sent: 19-Jun-21 10:41 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Mankind</strong>
+
+Men, said the Devil,
+are good to their brothers:
+they don’t want to mend
+their own ways, but each other&#39;s.
+
+6/19/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="856000831647383562" id="message-856000831647383562" title="Message sent: 19-Jun-21 10:41 PM">
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="https://cdn.discordapp.com/attachments/847675036403367946/856000831472271361/unknown.gif">
+                                <img class="chatlog__attachment-media" src="https://cdn.discordapp.com/attachments/847675036403367946/856000831472271361/unknown.gif" alt="Image attachment" title="Image: unknown.gif (5.14 KB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 10:15 PM</span>
+
+            <div class="chatlog__message " data-message-id="856356718061813790" id="message-856356718061813790" title="Message sent: 20-Jun-21 10:15 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Naive</strong>
+
+
+Naive you are
+if you believe
+life favours those
+who aren&#39;t naive.
+
+6/20/21</span>
+
+                                <span class="chatlog__edited-timestamp" title="20-Jun-21 10:16 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">21-Jun-21 11:26 PM</span>
+
+            <div class="chatlog__message " data-message-id="856736989935960084" id="message-856736989935960084" title="Message sent: 21-Jun-21 11:26 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Dream Interpretation</strong>
+
+Everything&#39;s either
+concave or -vex,
+so whatever you dream
+will be something with sex.
+
+6/21/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">22-Jun-21 03:30 PM</span>
+
+            <div class="chatlog__message " data-message-id="856979406005207070" id="message-856979406005207070" title="Message sent: 22-Jun-21 03:30 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Prayer</strong>
+<em>To the sun above the clouds.</em>
+ 
+Sun that givest all things birth,
+shine on everything on earth!
+ 
+If that&#39;s too much to demand,
+shine at least on this our land.
+ 
+If even that&#39;s too much for thee,
+shine at any rate on me.
+
+6/22/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">24-Jun-21 10:42 AM</span>
+
+            <div class="chatlog__message " data-message-id="857631781367971840" id="message-857631781367971840" title="Message sent: 24-Jun-21 10:42 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Social Mechanism</strong>
+ 
+When people always
+try to take
+the very smallest
+piece of cake
+how can it also
+always be
+that that&#39;s the one
+that&#39;s left for me?
+
+6/24/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">26-Jun-21 12:00 AM</span>
+
+            <div class="chatlog__message " data-message-id="858195042200059934" id="message-858195042200059934" title="Message sent: 26-Jun-21 12:00 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>A Toast</strong>
+ 
+The soul may be a mere pretence,
+the mind makes very little sense.
+So let us value the appeal
+of that which we can taste and feel.
+ 
+6/25/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">26-Jun-21 10:38 PM</span>
+
+            <div class="chatlog__message " data-message-id="858536666389807104" id="message-858536666389807104" title="Message sent: 26-Jun-21 10:38 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>On Problems</strong>
+ 
+Our choicest plans
+     have fallen through,
+our airiest castles
+     tumbled over,
+because of lines
+     we neatly drew
+and later neatly
+     stumbled over.
+
+6/26/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">27-Jun-21 11:27 PM</span>
+
+            <div class="chatlog__message " data-message-id="858911399627456572" id="message-858911399627456572" title="Message sent: 27-Jun-21 11:27 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>An Ethical Grook</strong>
+ 
+I see
+   and I hear
+      and I speak no evil;
+I carry
+   no malice
+      within my breast;
+yet quite without
+   wishing
+      a man to the Devil
+one may be
+   permitted
+      to hope for the best.
+ 
+6/27/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">28-Jun-21 02:34 PM</span>
+
+            <div class="chatlog__message " data-message-id="859139670823010324" id="message-859139670823010324" title="Message sent: 28-Jun-21 02:34 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Lilac Time</strong>
+ 
+The lilacs are flowering, sweet and sublime,
+     with a perfume that goes to the head;
+and lovers meander in prose and rhyme,
+trying to say --
+          for the thousandth time --
+     wha&#39;s easier done than said.
+
+6/28/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">01-Jul-21 10:58 PM</span>
+
+            <div class="chatlog__message " data-message-id="860353752599101481" id="message-860353752599101481" title="Message sent: 01-Jul-21 10:58 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>The Double-Door Effect</strong>
+ 
+Double doors are justified
+because they&#39;re comfortably wide.
+Therefore you only half undo&#39;em;
+and therefore nothing can get through &#39;em.
+
+7/1/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">03-Jul-21 12:52 AM</span>
+
+            <div class="chatlog__message " data-message-id="860744815820931092" id="message-860744815820931092" title="Message sent: 03-Jul-21 12:52 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Foretaste With Aftertaste</strong>
+ 
+Corinna&#39;s scanty evening dress
+reveals her charms to an excess
+which makes a fellow lust for less.
+
+7/2/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">03-Jul-21 10:02 AM</span>
+
+            <div class="chatlog__message " data-message-id="860883143863042049" id="message-860883143863042049" title="Message sent: 03-Jul-21 10:02 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Majority Rule</strong>
+ 
+His party was the Brotherhood of Brothers,
+and there were more of them than of the others.
+That is, they constituted that minority
+which formed the greater part of the majority.
+Within the party, he was of the faction
+that was supported by the greater fraction.
+And in each group, within each group, he sought
+the group that could command the most support.
+The final group had finally elected
+a triumvirate whom they all respected.
+Now, of these three, two had final word,
+because the two could overrule the third.
+One of these two was relatively weak,
+so one alone stood at the final peak.
+He was: <em>The Greater Number</em> of the pair
+which formed the most part of the three that were
+elected by the most of those whose boast
+it was to represent the most of the most
+of most of most of the entire state --
+or of the most of it at any rate.
+He never gave himself a moment&#39;s slumber
+but sought the welfare of the greater number.
+And all people, everywhere they went,
+knew to their cost exactly what it meant
+to be dictated to by the majority.
+But that meant nothing, -- they were the minority.
+
+7/3/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">04-Jul-21 10:18 AM</span>
+
+            <div class="chatlog__message " data-message-id="861249636156964894" id="message-861249636156964894" title="Message sent: 04-Jul-21 10:18 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Experts</strong>
+ 
+Experts have
+their expert fun
+ex cathedra
+telling one
+just how nothing
+can be done.
+
+7/4/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">05-Jul-21 10:17 AM</span>
+
+            <div class="chatlog__message " data-message-id="861611736565547018" id="message-861611736565547018" title="Message sent: 05-Jul-21 10:17 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Atomyriades</strong>
+ 
+Nature, it seems, is the popular name
+for milliards and milliards and milliards
+of particles playing their infinite game
+of billiards and billiards and billiards.
+
+7/5/21</span>
+
+                                <span class="chatlog__edited-timestamp" title="05-Jul-21 10:17 AM">(edited)</span>
+                        </div>
+                    </div>
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="https://cdn.discordapp.com/attachments/847675036403367946/861611736313102346/unknown.gif">
+                                <img class="chatlog__attachment-media" src="https://cdn.discordapp.com/attachments/847675036403367946/861611736313102346/unknown.gif" alt="Image attachment" title="Image: unknown.gif (2.9 KB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">06-Jul-21 10:47 PM</span>
+
+            <div class="chatlog__message " data-message-id="862162873966788638" id="message-862162873966788638" title="Message sent: 06-Jul-21 10:47 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Road Sense</strong>
+ 
+God save us, now they&#39;re murdering
+     another winding road,
+and another lovely countryside
+     will take another load
+of pantechnicon and car and motorbike.
+     They&#39;re busy making biger roads,
+     and better roads and more,
+so that people can discover
+     even faster than before
+     that everything is everywhere alike.
+
+7/6/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">07-Jul-21 11:04 PM</span>
+
+            <div class="chatlog__message " data-message-id="862529473924431922" id="message-862529473924431922" title="Message sent: 07-Jul-21 11:04 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Our Greatest Achievement</strong>
+
+We must expect posterity
+to view with some asperity
+  the marvels and the wonders
+    we&#39;re passing on to it;
+but it should change its attitude
+to one of heartfelt gratitude
+  when thinking of the blunders
+    we didn&#39;t quite commit.
+
+7/7/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">09-Jul-21 06:43 PM</span>
+
+            <div class="chatlog__message " data-message-id="863188732168896513" id="message-863188732168896513" title="Message sent: 09-Jul-21 06:43 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>The True Defence</strong>
+
+The only defence
+that is more than pretence
+   is to act on the fact
+that there is no defence.
+
+7/9/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">12-Jul-21 01:47 AM</span>
+
+            <div class="chatlog__message " data-message-id="864020083570769920" id="message-864020083570769920" title="Message sent: 12-Jul-21 01:47 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Past Pluperfect</strong>
+ 
+The past, -- well, it&#39;s just like
+              our Great-Aunt Laura,
+who cannot or will not perceive
+that though she is welcome,
+              and though we adore her,
+yet now it is time to leave.
+
+7/12/21</span>
+
+                                <span class="chatlog__edited-timestamp" title="12-Jul-21 01:47 AM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">14-Jul-21 12:29 AM</span>
+
+            <div class="chatlog__message " data-message-id="864725389820428299" id="message-864725389820428299" title="Message sent: 14-Jul-21 12:29 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Defence Wanted</strong>
+ 
+In International
+      Consequences
+the players must reckon
+      to reap what they&#39;ve sown.
+We have a defence
+      against other defences,
+but what&#39;s to defend us
+      against our own?
+
+7/13/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">14-Jul-21 11:37 PM</span>
+
+            <div class="chatlog__message " data-message-id="865074630142328873" id="message-865074630142328873" title="Message sent: 14-Jul-21 11:37 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Getting Down to Fundamentals</strong>
+ 
+It will steadily shrink,
+our earthly abode,
+until antiode stands
+upon antipode.
+ 
+Then, soles together,
+the planet gone,
+we&#39;ll know the ground
+that we rest upon.
+
+7/14/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">16-Jul-21 11:52 AM</span>
+
+            <div class="chatlog__message " data-message-id="865621997551353896" id="message-865621997551353896" title="Message sent: 16-Jul-21 11:52 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Grook to Stimulate Gratitude</strong>
+<em>in sour rationalists.</em>
+ 
+As things so
+    very often are
+intelligence
+    won&#39;t get you far.
+ 
+So be glad
+    you&#39;ve got more sense
+than you&#39;ve got
+    intelligence.
+
+7/16/21</span>
+
+                                <span class="chatlog__edited-timestamp" title="16-Jul-21 11:52 AM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">17-Jul-21 03:36 PM</span>
+
+            <div class="chatlog__message " data-message-id="866040586905190440" id="message-866040586905190440" title="Message sent: 17-Jul-21 03:36 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Missing Link</strong>
+ 
+Man&#39;s a kind
+of Missing Link,
+fondly thinking
+he can think.
+
+7/17/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">18-Jul-21 02:11 PM</span>
+
+            <div class="chatlog__message " data-message-id="866381680741842985" id="message-866381680741842985" title="Message sent: 18-Jul-21 02:11 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>That is the Question</strong>
+<em>Hamlet Anno Domini.</em>
+ 
+Co-existence
+or no existence.
+
+7/18/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">20-Jul-21 02:02 AM</span>
+
+            <div class="chatlog__message " data-message-id="866922964352106526" id="message-866922964352106526" title="Message sent: 20-Jul-21 02:02 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Bridge or Tunnel?</strong>
+<em>Channel project.</em>
+ 
+A tunnel would be possible,
+   a bridge would also do,
+but wouldn&#39;t it be better to
+   amalgamate the two?
+ 
+Let bridge and tunnel undulate
+   in waves from shore to shore,
+keeping green the memories
+   of those who went before.
+
+7/20/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">24-Jul-21 09:22 PM</span>
+
+            <div class="chatlog__message " data-message-id="868664419381567509" id="message-868664419381567509" title="Message sent: 24-Jul-21 09:22 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Losing face</strong>
+ 
+The noble art of losing face
+may one day save the human race
+     and turn into eternal merit
+what weaker minds would call disgrace.
+
+7/24/21</span>
+
+                                <span class="chatlog__edited-timestamp" title="24-Jul-21 09:22 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">26-Jul-21 12:35 AM</span>
+
+            <div class="chatlog__message " data-message-id="869075504735617034" id="message-869075504735617034" title="Message sent: 26-Jul-21 12:35 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>A Word to the Wise</strong>
+ 
+Let the world pass in its time-ridden race;
+       never get caught in its snare.
+Remember, the only acceptable case
+for being in any particular place
+       is having no business there.
+
+7/25/21</span>
+
+                                <span class="chatlog__edited-timestamp" title="26-Jul-21 12:35 AM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">27-Jul-21 08:46 PM</span>
+
+            <div class="chatlog__message " data-message-id="869742531418669106" id="message-869742531418669106" title="Message sent: 27-Jul-21 08:46 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Meeting the Eye</strong>
+ 
+You&#39;ll probably find
+      that it suits your book
+to be a bit cleverer
+      than you look.
+Observe that the easiest
+      method by far
+is to look a bit stupider
+      than you are.
+
+7/27/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">28-Jul-21 09:43 AM</span>
+
+            <div class="chatlog__message " data-message-id="869938136506073159" id="message-869938136506073159" title="Message sent: 28-Jul-21 09:43 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>If You Know What I Mean</strong>
+ 
+A poet should be of the
+                  old-fahioned meaningless brand:
+obscure, esoteric, symbolic, --
+              the critics demand it;
+so if there&#39;s a poem of mine
+              that you do understand
+I&#39;ll gladly explain what it means
+              till you don&#39;t understand it.
+
+7/28/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">30-Jul-21 11:15 PM</span>
+
+            <div class="chatlog__message " data-message-id="870867197587783680" id="message-870867197587783680" title="Message sent: 30-Jul-21 11:15 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>The Case For Obscurity</strong>
+<em>On Thoughts and Words I.</em>
+ 
+If no thought
+your mind does visit,
+make your speech
+not too explicit.
+
+7/30/21</span>
+
+                                <span class="chatlog__edited-timestamp" title="30-Jul-21 11:15 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">02-Aug-21 10:18 AM</span>
+
+            <div class="chatlog__message " data-message-id="871758856282329098" id="message-871758856282329098" title="Message sent: 02-Aug-21 10:18 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Out of Time</strong>
+<em>A holiday thought.</em>
+ 
+My old clock used to tell the time
+   and subdivide diurnity;
+but now it&#39;s lost both hands and chime
+   and only tells eternity.
+ 
+8/2/21</span>
+
+                        </div>
+                    </div>
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="https://cdn.discordapp.com/attachments/847675036403367946/871758856026480710/unknown.gif">
+                                <img class="chatlog__attachment-media" src="https://cdn.discordapp.com/attachments/847675036403367946/871758856026480710/unknown.gif" alt="Image attachment" title="Image: unknown.gif (3.99 KB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">03-Aug-21 05:25 PM</span>
+
+            <div class="chatlog__message " data-message-id="872228616451260589" id="message-872228616451260589" title="Message sent: 03-Aug-21 05:25 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>An Ode to Modesty</strong>
+ 
+Talking of successful rackets
+modesty deserves a mention.
+Exclamation marks in brackets
+never fail to draw attention.
+
+8/3/21</span>
+
+                        </div>
+                    </div>
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="https://cdn.discordapp.com/attachments/847675036403367946/872228616526774312/unknown.gif">
+                                <img class="chatlog__attachment-media" src="https://cdn.discordapp.com/attachments/847675036403367946/872228616526774312/unknown.gif" alt="Image attachment" title="Image: unknown.gif (1.74 KB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">06-Aug-21 12:28 AM</span>
+
+            <div class="chatlog__message " data-message-id="873060044407713872" id="message-873060044407713872" title="Message sent: 06-Aug-21 12:28 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>The Cure For Exhaustion</strong>
+ 
+Sometimes, exhausted
+with toil and endeavour,
+I wish I could sleep
+for ever and ever;
+but then this reflection
+my longing allays:
+I shall be doing it
+one of these days.
+
+8/5/21</span>
+
+                                <span class="chatlog__edited-timestamp" title="06-Aug-21 12:29 AM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">06-Aug-21 01:17 AM</span>
+
+            <div class="chatlog__message " data-message-id="873072310670729256" id="message-873072310670729256" title="Message sent: 06-Aug-21 01:17 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>I&#39;d Like</strong>
+ 
+I&#39;d like to know 
+what this whole show 
+is about 
+before it&#39;s out.
+
+8/6/21</span>
+
+                        </div>
+                    </div>
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="https://cdn.discordapp.com/attachments/847675036403367946/873072310511337512/unknown.gif">
+                                <img class="chatlog__attachment-media" src="https://cdn.discordapp.com/attachments/847675036403367946/873072310511337512/unknown.gif" alt="Image attachment" title="Image: unknown.gif (4.67 KB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">07-Aug-21 08:26 PM</span>
+
+            <div class="chatlog__message " data-message-id="873723872309039155" id="message-873723872309039155" title="Message sent: 07-Aug-21 08:26 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>A Maxim for Vikings</strong>
+ 
+Here is a fact
+   that should help you fight
+      a bit longer:
+Things that don&#39;t act-
+   ually kill you outright
+      make you stronger.
+
+8/7/21</span>
+
+                        </div>
+                    </div>
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="https://cdn.discordapp.com/attachments/847675036403367946/873723872254504990/unknown.gif">
+                                <img class="chatlog__attachment-media" src="https://cdn.discordapp.com/attachments/847675036403367946/873723872254504990/unknown.gif" alt="Image attachment" title="Image: unknown.gif (2.61 KB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">09-Aug-21 12:33 AM</span>
+
+            <div class="chatlog__message " data-message-id="874148482913550356" id="message-874148482913550356" title="Message sent: 09-Aug-21 12:33 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Making Sense</strong>
+ 
+Life makes senses
+and who could doubt it,
+if we have
+no doubt about it.
+
+8/8/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">11-Aug-21 08:10 PM</span>
+
+            <div class="chatlog__message " data-message-id="875169305510174721" id="message-875169305510174721" title="Message sent: 11-Aug-21 08:10 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Taught</strong>
+ 
+      We are taught to live,
+      we are
+          taught to feel.
+We are taught to conform and conceal.      
+ 
+      We are taught so well
+      what we
+         ought to feel
+that we cannot feel what we feel.
+
+8/11/21</span>
+
+                        </div>
+                    </div>
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="https://cdn.discordapp.com/attachments/847675036403367946/875169305484996628/unknown.gif">
+                                <img class="chatlog__attachment-media" src="https://cdn.discordapp.com/attachments/847675036403367946/875169305484996628/unknown.gif" alt="Image attachment" title="Image: unknown.gif (791 bytes)" loading="lazy">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">12-Aug-21 01:03 PM</span>
+
+            <div class="chatlog__message " data-message-id="875424169246986240" id="message-875424169246986240" title="Message sent: 12-Aug-21 01:03 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>The Little Mermaid&#39;s Little Sister</strong>
+ 
+The Little Mermaid&#39;s Little Sister
+was also partly girl and cod
+though in a way which those who kissed her
+      found odd. 
+ 
+...but which, well worth to mention,
+though at first sight absurd,
+I, with my fond intention,
+      preferred.
+
+8/12/21</span>
+
+                        </div>
+                    </div>
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="https://cdn.discordapp.com/attachments/847675036403367946/875424169054068776/unknown.gif">
+                                <img class="chatlog__attachment-media" src="https://cdn.discordapp.com/attachments/847675036403367946/875424169054068776/unknown.gif" alt="Image attachment" title="Image: unknown.gif (1.34 KB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">14-Aug-21 11:24 AM</span>
+
+            <div class="chatlog__message " data-message-id="876124118473408562" id="message-876124118473408562" title="Message sent: 14-Aug-21 11:24 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>The Tyranny of Things</strong>
+ 
+I am trying to rule
+        over ten thousand things
+which I thought
+        belonged to me.
+All of a sudden
+        a doubt take wings:
+Do they...
+        or could it be..? 
+ 
+A hardhanded hunch
+        in my mind&#39;s ear rings
+from whence
+        such suspicions may stem:
+that if you posses
+        more than just eight things
+then y o u
+        are possessed by t h e m
+
+8/14/21</span>
+
+                                <span class="chatlog__edited-timestamp" title="14-Aug-21 11:24 AM">(edited)</span>
+                        </div>
+                    </div>
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="https://cdn.discordapp.com/attachments/847675036403367946/876124118297243678/unknown.gif">
+                                <img class="chatlog__attachment-media" src="https://cdn.discordapp.com/attachments/847675036403367946/876124118297243678/unknown.gif" alt="Image attachment" title="Image: unknown.gif (1.07 KB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">16-Aug-21 01:20 AM</span>
+
+            <div class="chatlog__message " data-message-id="876697006846930966" id="message-876697006846930966" title="Message sent: 16-Aug-21 01:20 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Motivation of Toasts for a Steadfast Character</strong>
+ 
+Your steadfast character appeals
+       to frequent toasts, methinks:
+you never eat except at meals
+       -nor drink &#39;twixt drinks.
+
+8/15/21</span>
+
+                        </div>
+                    </div>
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="https://cdn.discordapp.com/attachments/847675036403367946/876697006624636979/image012.png">
+                                <img class="chatlog__attachment-media" src="https://cdn.discordapp.com/attachments/847675036403367946/876697006624636979/image012.png" alt="Image attachment" title="Image: image012.png (2.27 KB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">21-Aug-21 12:06 AM</span>
+
+            <div class="chatlog__message " data-message-id="878490140517998642" id="message-878490140517998642" title="Message sent: 21-Aug-21 12:06 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Look and Thou Shalt Find it</strong>
+<em>Foes</em>
+ 
+see no worth behind it.
+Those
+that are looking
+for nothing - will find it.
+
+8/20/21</span>
+
+                        </div>
+                    </div>
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="https://cdn.discordapp.com/attachments/847675036403367946/878490140325064714/unknown.gif">
+                                <img class="chatlog__attachment-media" src="https://cdn.discordapp.com/attachments/847675036403367946/878490140325064714/unknown.gif" alt="Image attachment" title="Image: unknown.gif (1.13 KB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">21-Aug-21 11:46 AM</span>
+
+            <div class="chatlog__message " data-message-id="878666440943751168" id="message-878666440943751168" title="Message sent: 21-Aug-21 11:46 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>The Egocentrics</strong>
+ 
+People are self-centered
+to a nauseous degree.
+They will keep on about themselves
+while I&#39;m explaining me.
+
+8/21/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">22-Aug-21 05:00 PM</span>
+
+            <div class="chatlog__message " data-message-id="879107844258025504" id="message-879107844258025504" title="Message sent: 22-Aug-21 05:00 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Thrift</strong>
+
+Nobody can be lucky all the time;
+ 
+don&#39;t think you&#39;ve been abandoned in your prime,
+but rather that you&#39;re saving up your ration.
+
+8/22/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">24-Aug-21 01:55 PM</span>
+
+            <div class="chatlog__message " data-message-id="879786057120493679" id="message-879786057120493679" title="Message sent: 24-Aug-21 01:55 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Capacity</strong>
+<em>A contribution to the psychology of disappointment</em>
+ 
+Some people live
+ in a dream of what&#39;ll
+allow them to
+ live their dream:
+they solemnly hold out
+ a half-pint bottle
+and ask for
+ a pint of cream.
+
+8/24/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">25-Aug-21 04:34 PM</span>
+
+            <div class="chatlog__message " data-message-id="880188450316378122" id="message-880188450316378122" title="Message sent: 25-Aug-21 04:34 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>That Weary Feeling</strong>
+ 
+Do you know that weary feeling
+ when your mind is strangely strangled
+and your head is like a ball of wool
+ that&#39;s very, very tangled;
+and the tempo of your thinking
+ must be lenient and mild,
+as though you were explaining
+ to a very little child.
+
+8/25/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">26-Aug-21 10:57 PM</span>
+
+            <div class="chatlog__message " data-message-id="880647307081695233" id="message-880647307081695233" title="Message sent: 26-Aug-21 10:57 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>One&#39;s Own Weather</strong>
+ 
+You&#39;re squandering
+ spleen on your brothers,
+and wasting
+ good self-pity too,
+if you think
+ that there&#39;s sun on the others
+whenever it&#39;s raining on you. 
+
+8/26/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">27-Aug-21 11:21 AM</span>
+
+            <div class="chatlog__message " data-message-id="880834319218774036" id="message-880834319218774036" title="Message sent: 27-Aug-21 11:21 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Two Passivits</strong>
+<em>Eradicate the optimist</em>
+ 
+that human values will persist
+ no matter what we do. 
+ 
+Annihilate the pessimist
+ whose ineffectual cry
+is that the goal&#39;s already missed
+ however hard we try.
+ 
+8/27/21</span>
+
+                        </div>
+                    </div>
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="https://cdn.discordapp.com/attachments/847675036403367946/880834319042617405/unknown.gif">
+                                <img class="chatlog__attachment-media" src="https://cdn.discordapp.com/attachments/847675036403367946/880834319042617405/unknown.gif" alt="Image attachment" title="Image: unknown.gif (908 bytes)" loading="lazy">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">28-Aug-21 04:01 PM</span>
+
+            <div class="chatlog__message " data-message-id="881267219105980416" id="message-881267219105980416" title="Message sent: 28-Aug-21 04:01 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>The Central Point</strong>
+<em>A philosophistry</em>
+ 
+I am the Universe&#39;s Centre.
+No subtle skeptics can confound me;
+for how can other viewpoints enter,
+when all the rest is all around me?
+
+8/28/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">29-Aug-21 11:07 PM</span>
+
+            <div class="chatlog__message " data-message-id="881736894243823649" id="message-881736894243823649" title="Message sent: 29-Aug-21 11:07 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Mouse and Man</strong>
+<em>A relativistic grook on co-existence</em>
+ 
+A human being sharing with a mouse.
+Each thinks himself the master of the house.
+In fact, of course, each occupier&#39;s place is
+the other&#39;s insulating interspaces.
+
+8/29/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">30-Aug-21 02:01 PM</span>
+
+            <div class="chatlog__message " data-message-id="881961794170671104" id="message-881961794170671104" title="Message sent: 30-Aug-21 02:01 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Tree Facts About Traffic</strong>
+ 
+Three facts, quite easy,
+ should be known to all
+  would-be arrivers
+   who set out on wheels: 
+ 
+that roads are greasy,
+ safety margins small,
+  and fellow drivers
+   fellow imbeciles.
+
+8/30/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">31-Aug-21 11:53 AM</span>
+
+            <div class="chatlog__message " data-message-id="882292058797264946" id="message-882292058797264946" title="Message sent: 31-Aug-21 11:53 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Vita Brevis</strong>
+ 
+A lifetime
+is more
+than
+sufficiently long
+for people to get what there is of it
+wrong.
+
+8/31/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">03-Sep-21 08:18 AM</span>
+
+            <div class="chatlog__message " data-message-id="883325003423187004" id="message-883325003423187004" title="Message sent: 03-Sep-21 08:18 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Eternity and the Clock</strong>
+<em>A homage to finity</em>
+ 
+Eternity&#39;s one of those mental blocks-
+ the concept is inconceivable.
+The clock concedes it in ticks and tocks,
+ belittled, belaboured, believable. 
+ 
+Each passing moment is seized and chewed
+ with argument incontestable.
+Premasticated, like baby food,
+ eternity is digestible.
+
+9/3/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">04-Sep-21 09:53 AM</span>
+
+            <div class="chatlog__message " data-message-id="883711295566778428" id="message-883711295566778428" title="Message sent: 04-Sep-21 09:53 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Astro Gymnastics</strong>
+<em>Do-it-yourself grook</em>
+ 
+Go on a starlit night,
+ stand on your head,
+leave your feet dangling
+ outwards into space,
+and let the starry
+ firmament you tread
+be, for the moment,
+ your elected base. 
+ 
+Feel Earth&#39;s colossal weight
+ of ice and granite,
+of molten magma,
+ water, iron, and lead;
+and briefly hold
+ this strangely solid planet
+balanced upon
+ your strangely solid head.
+
+9/4/21</span>
+
+                                <span class="chatlog__edited-timestamp" title="04-Sep-21 09:53 AM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">06-Sep-21 02:02 PM</span>
+
+            <div class="chatlog__message " data-message-id="884498759092949012" id="message-884498759092949012" title="Message sent: 06-Sep-21 02:02 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Twin Mystery</strong>
+ 
+To many people artists seem
+ undisciplined and lawless.
+Such laziness, with such great gifts,
+ seems little short of crime.
+One mystery is how they make
+ the things they make so flawless;
+another, what they&#39;re doing with
+ their energy and time.
+
+9/6/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">07-Sep-21 02:01 PM</span>
+
+            <div class="chatlog__message " data-message-id="884860878510510120" id="message-884860878510510120" title="Message sent: 07-Sep-21 02:01 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Drawing Near</strong>
+<em>To Saul Steinberg</em>
+ 
+You draw
+the near things
+ nearer
+by making
+clear things
+ queerer.
+
+9/7/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="884862020086824991" id="message-884862020086824991" title="Message sent: 07-Sep-21 02:05 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Here is one of my favorite Saul Steinberg pieces</span>
+
+                        </div>
+                    </div>
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="https://cdn.discordapp.com/attachments/847675036403367946/884862020137123911/unknown.jpeg">
+                                <img class="chatlog__attachment-media" src="https://cdn.discordapp.com/attachments/847675036403367946/884862020137123911/unknown.jpeg" alt="Image attachment" title="Image: unknown.jpeg (773.13 KB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">08-Sep-21 06:28 PM</span>
+
+            <div class="chatlog__message " data-message-id="885290539656810506" id="message-885290539656810506" title="Message sent: 08-Sep-21 06:28 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Thoughts and Things</strong>
+ 
+I concentrate on
+ the concentric rings
+produced by my pen
+ in the ink.
+The thing that distinguishes
+ thoughts from things
+is that thoughts are harder
+ to think.
+
+9/8/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">09-Sep-21 10:40 PM</span>
+
+            <div class="chatlog__message " data-message-id="885716288519942226" id="message-885716288519942226" title="Message sent: 09-Sep-21 10:40 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Last Things First</strong>
+ 
+Solutions to problems
+ are easy to find:
+the problem&#39;s a great
+ contribution.
+What&#39;s truly an art
+ is to wring from your mind
+a problem to fit
+ a solution.
+
+9/9/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">10-Sep-21 02:14 PM</span>
+
+            <div class="chatlog__message " data-message-id="885951501023993918" id="message-885951501023993918" title="Message sent: 10-Sep-21 02:14 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>On Being Oneself</strong>
+<em>Good resolution grook</em>
+ 
+If virtue
+can&#39;t be mine alone
+at least my faults
+can be my own.
+
+9/10/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">11-Sep-21 10:32 PM</span>
+
+            <div class="chatlog__message " data-message-id="886439220409950270" id="message-886439220409950270" title="Message sent: 11-Sep-21 10:32 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Unplumbed Depths</strong>
+<em>Grook on philo-sophistical and other -isms</em>
+ 
+Philo-sophisticism
+ with hypnotic
+effect affects
+ the boobies that abound:
+being so bottomlessly
+ idiotic
+that even they
+ can see it profound.
+
+9/11/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">12-Sep-21 03:03 PM</span>
+
+            <div class="chatlog__message " data-message-id="886688521455284294" id="message-886688521455284294" title="Message sent: 12-Sep-21 03:03 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Originality</strong>
+ 
+Original thought
+ is a straightforward process.
+It&#39;s easy enough
+ when you know what to do.
+You simply combine
+ in appropriate doses
+the blatantly false
+ and the patently true.
+
+9/12/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">13-Sep-21 02:05 PM</span>
+
+            <div class="chatlog__message " data-message-id="887036178002505748" id="message-887036178002505748" title="Message sent: 13-Sep-21 02:05 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Wisdom is</strong>
+
+Wisdom is
+the booby prize
+given when you&#39;ve been
+unwise.
+
+9/13/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">14-Sep-21 08:43 AM</span>
+
+            <div class="chatlog__message " data-message-id="887317693563285527" id="message-887317693563285527" title="Message sent: 14-Sep-21 08:43 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>The Opposite View</strong>
+ 
+For many system shoppers it&#39;s
+ a good-for-nothing system
+that classifies as opposites
+ stupidity and wisdom. 
+ 
+because by logic-choppers it&#39;s
+ accepted with avidity:
+stupidity&#39;s true opposite&#39;s
+ the opposite stupidity.
+
+9/14/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">15-Sep-21 03:39 PM</span>
+
+            <div class="chatlog__message " data-message-id="887784638309892126" id="message-887784638309892126" title="Message sent: 15-Sep-21 03:39 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Wanting to be Able to</strong>
+
+&#39;Impossibilities&#39; are good
+ not to attach that label to;
+since, correctly understood,
+if we wanted to, we would
+ be able to be able to.
+ 
+9/15/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">16-Sep-21 03:58 PM</span>
+
+            <div class="chatlog__message " data-message-id="888151854293323857" id="message-888151854293323857" title="Message sent: 16-Sep-21 03:58 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Who is Learned?</strong>
+<em>A definition</em>
+ 
+One who, consuming midnight oil
+in studies diligent and slow,
+teaches himself, with painful toil,
+the things that other people know.
+
+9/16/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">17-Sep-21 02:20 PM</span>
+
+            <div class="chatlog__message " data-message-id="888489658445619250" id="message-888489658445619250" title="Message sent: 17-Sep-21 02:20 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Everybody&#39;s Worth Knowing</strong>
+ 
+It&#39;s some sort of comfort
+ to get the gist
+of certain impertinents
+ I could list -
+so that you know what you
+ haven&#39;t missed.
+
+9/17/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">18-Sep-21 10:48 PM</span>
+
+            <div class="chatlog__message " data-message-id="888979776231067698" id="message-888979776231067698" title="Message sent: 18-Sep-21 10:48 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Grook About Faith, Hope, etc.</strong>
+ 
+She gave me hope
+she gave me love,
+ with bounty unalloyed.
+But what she had of faith,
+alas,
+ she gave to Freud.
+ 
+9/18/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">19-Sep-21 05:24 PM</span>
+
+            <div class="chatlog__message " data-message-id="889260615565180978" id="message-889260615565180978" title="Message sent: 19-Sep-21 05:24 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>The Civilized Art</strong>
+ 
+Two types that had far better
+ leave to their betters
+the civilized art
+ of exchanging letters
+are those who disdain
+ to make any response,
+and those who infallibly
+ answer at once.
+
+9/19/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">20-Sep-21 02:03 PM</span>
+
+            <div class="chatlog__message " data-message-id="889572484964319233" id="message-889572484964319233" title="Message sent: 20-Sep-21 02:03 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Prescription</strong>
+
+A bit
+of virtue
+will never
+hurt you.
+
+9/20/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">21-Sep-21 01:55 PM</span>
+
+            <div class="chatlog__message " data-message-id="889932792014704660" id="message-889932792014704660" title="Message sent: 21-Sep-21 01:55 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>The First Principal of Gastronomy</strong>
+ 
+There&#39;s a rule for proper doses
+in the dinner-eaters lore:
+one should stop the filling process
+while one still has room for more. 
+ 
+And if someone at the table
+had reminded me before -
+Hallelujah! I&#39;d be able
+to absorb a little more.
+
+9/21/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">22-Sep-21 02:31 PM</span>
+
+            <div class="chatlog__message " data-message-id="890304216747343932" id="message-890304216747343932" title="Message sent: 22-Sep-21 02:31 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Handsome is—</strong>
+<em>Portrait-grook</em>
+ 
+He&#39;s gallantry personified;
+ in fact
+his brochures ought to read:
+SATISFACTION GUARANTEED -
+or your virginity returned
+ intact.
+
+9/22/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">23-Sep-21 04:31 PM</span>
+
+            <div class="chatlog__message " data-message-id="890696907352059995" id="message-890696907352059995" title="Message sent: 23-Sep-21 04:31 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Idle Fellow</strong>
+<em>Portrait-grook</em> 
+ 
+Professor Blooby doesn&#39;t see the fun
+in what his fellow-man call relaxation.
+He isn&#39;t ignorant of how it&#39;s done,
+but lacks the necessary application.
+
+9/23/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">24-Sep-21 01:46 PM</span>
+
+            <div class="chatlog__message " data-message-id="891017711927324793" id="message-891017711927324793" title="Message sent: 24-Sep-21 01:46 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>A Diplomatic Compromise</strong> 
+ 
+A fellow I know
+can get mountains to move
+and all opposition
+appeases:
+he preaches what God
+cannot help but approve,
+and does
+what the Devil he pleases.
+
+9/24/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">25-Sep-21 11:09 AM</span>
+
+            <div class="chatlog__message " data-message-id="891340753039659008" id="message-891340753039659008" title="Message sent: 25-Sep-21 11:09 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Novelty</strong>
+ 
+For me there is something ineffably new
+ in every new moment&#39;s arising;
+and even the things I habitually do
+ have qualities new and surprising. 
+ 
+There&#39;s nothing that happens that happened before
+ in exactly that way in its life.
+When you&#39;re playing the piano, it&#39;s rather a bore;
+ but it&#39;s nice when you&#39;re kissing your wife.
+
+9/25/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">26-Sep-21 10:38 AM</span>
+
+            <div class="chatlog__message " data-message-id="891695253915058176" id="message-891695253915058176" title="Message sent: 26-Sep-21 10:38 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Remedies&#39; Remedies</strong>
+ 
+Pills are useful
+against ills
+and against
+too many pills.
+
+9/26/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">27-Sep-21 02:01 PM</span>
+
+            <div class="chatlog__message " data-message-id="892108643141554176" id="message-892108643141554176" title="Message sent: 27-Sep-21 02:01 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>We Do Our Best</strong>
+<em>Or do we?</em>
+ 
+Modern man
+has the skill;
+he can do
+what he will.
+But alas -
+being man
+he will do
+what he can. 
+
+9/27/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">28-Sep-21 02:00 PM</span>
+
+            <div class="chatlog__message " data-message-id="892470912316768317" id="message-892470912316768317" title="Message sent: 28-Sep-21 02:00 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Cheap Eatery</strong>
+ 
+Whenever I&#39;m scared by the state of my purse
+ I dine at the &#39;Gold-Digger&#39;s Claim&#39;,
+where the food is so out of comparison worse
+ you forget that the price is the same. 
+
+9/28/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">30-Sep-21 07:45 AM</span>
+
+            <div class="chatlog__message " data-message-id="893101363607764992" id="message-893101363607764992" title="Message sent: 30-Sep-21 07:45 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Similarity</strong>
+<em>Commutative Law</em>
+ 
+No cow&#39;s like a horse,
+and no horse like a cow.
+That&#39;s one similarity
+ anyhow. 
+
+9/30/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">01-Oct-21 03:02 PM</span>
+
+            <div class="chatlog__message " data-message-id="893573504753094706" id="message-893573504753094706" title="Message sent: 01-Oct-21 03:02 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>The Paradox of Life</strong>
+<em>Philosophical grook</em>
+ 
+A bit beyond perception&#39;s reach
+I sometimes believe I see
+that Life is two locked boxes, each
+containing the other&#39;s key. 
+
+10/1/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">02-Oct-21 06:32 PM</span>
+
+            <div class="chatlog__message " data-message-id="893988744644923453" id="message-893988744644923453" title="Message sent: 02-Oct-21 06:32 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Budgeting: The First Law</strong>
+ 
+If you want to know
+where your money went,
+you must spend it quickly
+before it&#39;s spent. 
+
+10/2/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">03-Oct-21 02:39 PM</span>
+
+            <div class="chatlog__message " data-message-id="894292502021046272" id="message-894292502021046272" title="Message sent: 03-Oct-21 02:39 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>On An Ashtray</strong>
+ 
+When your thirst
+and hunger cease,
+may your ashes
+rest in peace. 
+
+10/3/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">05-Oct-21 03:20 PM</span>
+
+            <div class="chatlog__message " data-message-id="895027590207774763" id="message-895027590207774763" title="Message sent: 05-Oct-21 03:20 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Oh Bother!</strong>
+ 
+What with one thing
+ and another
+ people bother. 
+ 
+With a third thing
+ and a fourth it
+ isn&#39;t worth it. 
+
+10/5/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">06-Oct-21 07:45 AM</span>
+
+            <div class="chatlog__message " data-message-id="895275448257380352" id="message-895275448257380352" title="Message sent: 06-Oct-21 07:45 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Time</strong>
+ 
+Does time exist?
+I gravely doubt it.
+But gosh, what should we do
+without it? 
+ 
+10/6/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">07-Oct-21 10:28 AM</span>
+
+            <div class="chatlog__message " data-message-id="895678962427117578" id="message-895678962427117578" title="Message sent: 07-Oct-21 10:28 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Candle Wisdom</strong>
+ 
+If you knew
+what you will know
+when your candle
+has burnt low,
+it would greatly
+ease your plight
+while your candle
+still burns bright.
+
+10/7/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">08-Oct-21 07:54 PM</span>
+
+            <div class="chatlog__message " data-message-id="896183738361319424" id="message-896183738361319424" title="Message sent: 08-Oct-21 07:54 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>What Love is Like</strong>
+ 
+Love is like
+a pineapple,
+sweet and
+undefinable.
+
+10/8/21</span>
+
+                                <span class="chatlog__edited-timestamp" title="08-Oct-21 07:54 PM">(edited)</span>
+                        </div>
+                    </div>
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="https://cdn.discordapp.com/attachments/847675036403367946/896183738201931886/unknown.gif">
+                                <img class="chatlog__attachment-media" src="https://cdn.discordapp.com/attachments/847675036403367946/896183738201931886/unknown.gif" alt="Image attachment" title="Image: unknown.gif (3 KB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">09-Oct-21 02:57 PM</span>
+
+            <div class="chatlog__message " data-message-id="896471540915392572" id="message-896471540915392572" title="Message sent: 09-Oct-21 02:57 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Memento Vivere</strong>
+ 
+Love while you&#39;ve got
+  love to give.
+Live while you&#39;ve got
+  life to live.
+
+10/9/21</span>
+
+                                <span class="chatlog__edited-timestamp" title="09-Oct-21 02:58 PM">(edited)</span>
+                        </div>
+                    </div>
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="https://cdn.discordapp.com/attachments/847675036403367946/896471540772794408/unknown.gif">
+                                <img class="chatlog__attachment-media" src="https://cdn.discordapp.com/attachments/847675036403367946/896471540772794408/unknown.gif" alt="Image attachment" title="Image: unknown.gif (5.08 KB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">10-Oct-21 03:55 PM</span>
+
+            <div class="chatlog__message " data-message-id="896848495405846579" id="message-896848495405846579" title="Message sent: 10-Oct-21 03:55 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Timing Toast</strong>
+<em>Grook on how to char for yourself</em>
+ 
+There&#39;s an art of knowing when.
+Never try to guess.
+Toast until it smokes and then
+twenty seconds less.
+
+10/10/2021</span>
+
+                                <span class="chatlog__edited-timestamp" title="10-Oct-21 03:58 PM">(edited)</span>
+                        </div>
+                    </div>
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="https://cdn.discordapp.com/attachments/847675036403367946/896848495208706048/unknown.gif">
+                                <img class="chatlog__attachment-media" src="https://cdn.discordapp.com/attachments/847675036403367946/896848495208706048/unknown.gif" alt="Image attachment" title="Image: unknown.gif (1.62 KB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">11-Oct-21 03:33 PM</span>
+
+            <div class="chatlog__message " data-message-id="897205342163845210" id="message-897205342163845210" title="Message sent: 11-Oct-21 03:33 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Thoughts on a Station Platform</strong>
+ 
+It ought to be plain
+how little you gain
+by getting excited
+and vexed.
+ 
+You&#39;ll always be late
+for the previous train,
+and always in time
+for the next
+
+10/11/21</span>
+
+                        </div>
+                    </div>
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="https://cdn.discordapp.com/attachments/847675036403367946/897205342042193950/unknown.gif">
+                                <img class="chatlog__attachment-media" src="https://cdn.discordapp.com/attachments/847675036403367946/897205342042193950/unknown.gif" alt="Image attachment" title="Image: unknown.gif (2.09 KB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">12-Oct-21 05:13 PM</span>
+
+            <div class="chatlog__message " data-message-id="897592748767608895" id="message-897592748767608895" title="Message sent: 12-Oct-21 05:13 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Abreast</strong>
+ 
+He who aims
+to keep abreast
+is for ever
+second best.
+
+10/12/21</span>
+
+                        </div>
+                    </div>
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="https://cdn.discordapp.com/attachments/847675036403367946/897592749002477598/image019.png">
+                                <img class="chatlog__attachment-media" src="https://cdn.discordapp.com/attachments/847675036403367946/897592749002477598/image019.png" alt="Image attachment" title="Image: image019.png (4.27 KB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">13-Oct-21 02:01 PM</span>
+
+            <div class="chatlog__message " data-message-id="897906920902500362" id="message-897906920902500362" title="Message sent: 13-Oct-21 02:01 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>The Final Step</strong>
+ 
+If they made diving boards
+six inches shorter -
+think how much sooner
+you&#39;d be in the water.
+
+10/13/21</span>
+
+                        </div>
+                    </div>
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="https://cdn.discordapp.com/attachments/847675036403367946/897906920743137300/image020.png">
+                                <img class="chatlog__attachment-media" src="https://cdn.discordapp.com/attachments/847675036403367946/897906920743137300/image020.png" alt="Image attachment" title="Image: image020.png (5.77 KB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">15-Oct-21 07:45 AM</span>
+
+            <div class="chatlog__message " data-message-id="898537054789566495" id="message-898537054789566495" title="Message sent: 15-Oct-21 07:45 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>What People May Think</strong>
+ 
+Some people cower
+and wince and shrink,
+owing to fear of
+what people may think.
+There is one answer
+to worries like these:
+people may think
+what the devil they please.
+
+10/15/21</span>
+
+                        </div>
+                    </div>
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="https://cdn.discordapp.com/attachments/847675036403367946/898537054634410064/unknown.gif">
+                                <img class="chatlog__attachment-media" src="https://cdn.discordapp.com/attachments/847675036403367946/898537054634410064/unknown.gif" alt="Image attachment" title="Image: unknown.gif (1.69 KB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">16-Oct-21 02:28 PM</span>
+
+            <div class="chatlog__message " data-message-id="899000763769061376" id="message-899000763769061376" title="Message sent: 16-Oct-21 02:28 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Good Advice</strong>
+ 
+Shun advice
+at any price -
+that&#39;s what I call
+good advice
+
+10/16/21</span>
+
+                        </div>
+                    </div>
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="https://cdn.discordapp.com/attachments/847675036403367946/899000763605458974/image022.png">
+                                <img class="chatlog__attachment-media" src="https://cdn.discordapp.com/attachments/847675036403367946/899000763605458974/image022.png" alt="Image attachment" title="Image: image022.png (5.68 KB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">17-Oct-21 05:20 PM</span>
+
+            <div class="chatlog__message " data-message-id="899406577247854633" id="message-899406577247854633" title="Message sent: 17-Oct-21 05:20 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>(on Denmark)</em>
+
+Denmark seen from a foreign land
+looks but like a grain of sand.
+Denmark as we Danes conceive it
+is so big you won’t believe it.
+
+10/17/21</span>
+
+                                <span class="chatlog__edited-timestamp" title="17-Oct-21 05:21 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">18-Oct-21 02:56 PM</span>
+
+            <div class="chatlog__message " data-message-id="899732607229632643" id="message-899732607229632643" title="Message sent: 18-Oct-21 02:56 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Those Who Know</strong>
+ 
+Those who always
+know what’s best
+are
+a universal pest.
+
+10/18/21</span>
+
+                        </div>
+                    </div>
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="https://cdn.discordapp.com/attachments/847675036403367946/899732607078649897/image023.png">
+                                <img class="chatlog__attachment-media" src="https://cdn.discordapp.com/attachments/847675036403367946/899732607078649897/image023.png" alt="Image attachment" title="Image: image023.png (10.45 KB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">19-Oct-21 02:38 PM</span>
+
+            <div class="chatlog__message " data-message-id="900090613016440872" id="message-900090613016440872" title="Message sent: 19-Oct-21 02:38 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Saturation</strong>
+ 
+The heavens are draining,
+it’s raining and raining,
+and everything couldn’t be wetter,
+and things are so bad
+that we ought to be glad:
+because now they can only get better.
+
+10/19/21</span>
+
+                        </div>
+                    </div>
+
+                    <div class="chatlog__attachment " onclick="">
+
+                            <a href="https://cdn.discordapp.com/attachments/847675036403367946/900090612865433670/image024.png">
+                                <img class="chatlog__attachment-media" src="https://cdn.discordapp.com/attachments/847675036403367946/900090612865433670/image024.png" alt="Image attachment" title="Image: image024.png (10.7 KB)" loading="lazy">
+                            </a>
+                    </div>
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">21-Oct-21 08:35 AM</span>
+
+            <div class="chatlog__message " data-message-id="900724003424075826" id="message-900724003424075826" title="Message sent: 21-Oct-21 08:35 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Those who have no wisedom yet count their wealth by what they get. 
+you who have the grace to live: count your wealth by what you give!
+
+10/21/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">22-Oct-21 01:19 PM</span>
+
+            <div class="chatlog__message " data-message-id="901157939727990824" id="message-901157939727990824" title="Message sent: 22-Oct-21 01:19 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>About Denmark</strong>
+ 
+Why not let us compromise
+about Denmark&#39;s proper size,
+which will truly please us all,
+since it&#39;s bigger than it&#39;s small.
+
+10/22/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">23-Oct-21 08:18 PM</span>
+
+            <div class="chatlog__message " data-message-id="901625594607968328" id="message-901625594607968328" title="Message sent: 23-Oct-21 08:18 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Nothing is Indispensable</strong>
+<em>Grook to warn the universe against megalomania</em>
+ 
+The universe may be as great as they say.
+But it wouldn&#39;t be missed if it didn&#39;t exist.
+
+10/23/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">24-Oct-21 10:28 AM</span>
+
+            <div class="chatlog__message " data-message-id="901839524601151508" id="message-901839524601151508" title="Message sent: 24-Oct-21 10:28 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Time and Eternity</strong>
+ 
+Where the woods and ploughlands
+of tradition and modernity
+run into the never-ending 
+deserts of eternity,
+there I have my daily task
+while time smoothly passes,
+spooning the eternal sands 
+into hour-glass.
+
+10/24/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">25-Oct-21 08:41 AM</span>
+
+            <div class="chatlog__message " data-message-id="902174930295205918" id="message-902174930295205918" title="Message sent: 25-Oct-21 08:41 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Investment Policy</strong>
+ 
+Anxieties yield
+at a negative rate,
+increasing in smallness
+the longer they wait.
+
+10/25/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">26-Oct-21 08:29 PM</span>
+
+            <div class="chatlog__message " data-message-id="902715537761644606" id="message-902715537761644606" title="Message sent: 26-Oct-21 08:29 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>A Word of Encouragement</strong>
+
+Stomach-ache can be a curse;
+heart-ache may be even worse;
+so thank Heaven on your knees
+if you&#39;ve got but one of these.
+
+10/26/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">27-Oct-21 10:45 AM</span>
+
+            <div class="chatlog__message " data-message-id="902931050961985636" id="message-902931050961985636" title="Message sent: 27-Oct-21 10:45 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>The Wisdom of the Spheres</strong>
+
+How instructive
+is a star!
+It can teach us
+from afar
+just how small
+each other are.
+
+10/27/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">28-Oct-21 12:40 PM</span>
+
+            <div class="chatlog__message " data-message-id="903322435867250739" id="message-903322435867250739" title="Message sent: 28-Oct-21 12:40 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>It Isn&#39;t Enough</strong>
+ 
+One paramount truth
+our society smothers
+in petty concern
+with position and pelf:
+It isn&#39;t enough
+to exasperate others;
+you&#39;ve got to remember
+to gladden yourself.
+
+10/28/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">29-Oct-21 04:38 PM</span>
+
+            <div class="chatlog__message " data-message-id="903744596113260575" id="message-903744596113260575" title="Message sent: 29-Oct-21 04:38 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Small Things and Great</strong>
+ 
+He that lets
+the small things bind him
+leaves the great
+undone behind him.
+
+10/29/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">31-Oct-21 10:42 AM</span>
+
+            <div class="chatlog__message " data-message-id="904379903787544647" id="message-904379903787544647" title="Message sent: 31-Oct-21 10:42 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Brave</strong>
+ 
+To be brave is to behave
+bravely when your heart is faint.
+So you can be really brave 
+only when you really ain&#39;t.
+
+10/31/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">01-Nov-21 12:13 PM</span>
+
+            <div class="chatlog__message " data-message-id="904765202308931676" id="message-904765202308931676" title="Message sent: 01-Nov-21 12:13 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>The State</strong>
+ 
+Nature, our father and mother,
+gave us all we have got.
+The state, our elder brother,
+swipes the lot.
+
+11/1/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">02-Nov-21 07:05 PM</span>
+
+            <div class="chatlog__message " data-message-id="905231196672389131" id="message-905231196672389131" title="Message sent: 02-Nov-21 07:05 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Presence of Mind</strong>
+ 
+You&#39;ll conquer the present
+suspiciously fast
+if you smell of the future --
+and stink of the past.
+
+11/2/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">03-Nov-21 08:00 AM</span>
+
+            <div class="chatlog__message " data-message-id="905426167631314964" id="message-905426167631314964" title="Message sent: 03-Nov-21 08:00 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Making an Effort</strong>
+ 
+Our so-called limitations, believe,
+apply to faculties we don&#39;t apply.
+We don&#39;t discover what we can&#39;t achieve
+until we make an effort not to try.
+
+11/3/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">04-Nov-21 07:29 AM</span>
+
+            <div class="chatlog__message " data-message-id="905780825948291133" id="message-905780825948291133" title="Message sent: 04-Nov-21 07:29 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Constitutional Point</strong>
+ 
+Power corrupts, where
+as sound opposition
+builds up our free
+democratic tradition.
+One thing would make a 
+democracy flower:
+having a strong opposition --
+in power.
+
+11/4/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">05-Nov-21 02:01 PM</span>
+
+            <div class="chatlog__message " data-message-id="906241726174355528" id="message-906241726174355528" title="Message sent: 05-Nov-21 02:01 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Rhyme and Reason</strong>
+ 
+There was an old woman
+who lived in a shoe.
+She had so many children.
+She didn&#39;t know what to do.
+But try as she would 
+she could never detect
+which was the cause
+and which the effect.
+
+11/5/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">06-Nov-21 03:08 PM</span>
+
+            <div class="chatlog__message " data-message-id="906620975754383430" id="message-906620975754383430" title="Message sent: 06-Nov-21 03:08 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Wide Road</strong>
+ 
+To make a name for learning 
+when other roads are barred,
+take something very easy
+and make it very hard.
+
+11/6/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">07-Nov-21 01:55 PM</span>
+
+            <div class="chatlog__message " data-message-id="906980250846650438" id="message-906980250846650438" title="Message sent: 07-Nov-21 01:55 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>The Only Solution</strong>
+ 
+We shall have to evolve
+problem-solvers galore--
+since each problem they solve
+creates ten problems more.
+
+11/7/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">08-Nov-21 02:36 PM</span>
+
+            <div class="chatlog__message " data-message-id="907352990250307654" id="message-907352990250307654" title="Message sent: 08-Nov-21 02:36 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Reflection on Size</strong>
+ 
+Small people often overrate
+the charm of being tall;
+which is, that you appreciate
+the charm of being small.
+
+11/8/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">09-Nov-21 07:12 PM</span>
+
+            <div class="chatlog__message " data-message-id="907784832447316038" id="message-907784832447316038" title="Message sent: 09-Nov-21 07:12 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>A Reproof</strong>
+<em>Grook in answer to a long explanatory letter</em>
+ 
+In view of your manner
+of spending your days
+I hope you may learn,
+before ending them,
+that the effort you spend
+on defending your ways
+could be better spent on 
+amending them.
+
+11/9/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">10-Nov-21 07:15 PM</span>
+
+            <div class="chatlog__message " data-message-id="908147873512849429" id="message-908147873512849429" title="Message sent: 10-Nov-21 07:15 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>Stone in Shoe</strong>
+ 
+If a nasty jagged stone
+gets into your shoe,
+thank the Lord it came alone --
+what if it were two?
+
+11/10/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">11-Nov-21 02:34 PM</span>
+
+            <div class="chatlog__message " data-message-id="908439455638126693" id="message-908439455638126693" title="Message sent: 11-Nov-21 02:34 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>The Unattainable Ideal</strong>
+ 
+We ought to live
+each day as though
+it were our last day 
+here below.
+ 
+But if I did, alas,
+I know
+it would have killed me
+long ago.
+
+11/11/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-21 03:11 PM</span>
+
+            <div class="chatlog__message " data-message-id="908811333699502111" id="message-908811333699502111" title="Message sent: 12-Nov-21 03:11 PM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>A Tip</strong>
+<em>to members of the literary profession</em>
+ 
+Those who can write
+have a lot to learn
+from those bright enough 
+not to.
+
+11/12/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+
+<div class="chatlog__message-group">
+
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/314407199562530816/e2c4ae7c1ec9884fd09b31952e2fdf0c.png?size=128" alt="Avatar" loading="lazy">
+    </div>
+
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Jonah#1166" data-user-id="314407199562530816" style="color: rgb(255,69,60)">shibboleet</span>
+
+
+        <span class="chatlog__timestamp">13-Nov-21 11:35 AM</span>
+
+            <div class="chatlog__message " data-message-id="909119405374439454" id="message-909119405374439454" title="Message sent: 13-Nov-21 11:35 AM">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>The Ultimate Wisdom</strong>
+ 
+Philosophers
+must ultimately find
+their true perfection
+in knowing all
+the follies of mankind
+-- by introspection.
+ 
+11/13/21</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+</div>
+
+<div class="postamble">
+    <div class="postamble__entry">Exported 133 message(s)</div>
+</div>
+
+</body>
+
+</html>
