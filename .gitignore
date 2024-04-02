@@ -67,6 +67,7 @@ node_modules/
 .DS_Store
 .DS_Store
 public/.DS_Store
+./public
 
 /resources/_gen/
 
