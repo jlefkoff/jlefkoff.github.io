@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title></title>
+    <link>http://localhost:1313/portfolio/</link>
+    <description>Recent content on </description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Mon, 25 Mar 2024 23:00:12 -0400</lastBuildDate><atom:link href="http://localhost:1313/portfolio/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Flight</title>
+      <link>http://localhost:1313/portfolio/flying/</link>
+      <pubDate>Fri, 02 Feb 2024 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/portfolio/flying/</guid>
+      <description>As long as I can remember, I&amp;rsquo;ve been fascinated by airplanes and the world of aviation. During the pandemic, I decided to finally take the leap and pursue my private pilot&amp;rsquo;s license, and I couldn&amp;rsquo;t have been happier with the result. Learning to operate an aircraft all by myself was unforgettable, and the adventures I&amp;rsquo;ve been able to go on as a result are incredible. I got my private pilot&amp;rsquo;s license in 2021 and my instrument rating in the summer of 2023.</description>
+      <content>&lt;p&gt;As long as I can remember, I&amp;rsquo;ve been fascinated by airplanes and the world of aviation. During the pandemic, I decided to finally take the leap and pursue my private pilot&amp;rsquo;s license, and I couldn&amp;rsquo;t have been happier with the result. Learning to operate an aircraft all by myself was unforgettable, and the adventures I&amp;rsquo;ve been able to go on as a result are incredible. I got my private pilot&amp;rsquo;s license in 2021 and my instrument rating in the summer of 2023.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/flying_1.jpg&#34;&gt;
+Flying over Monument Valley on my way back from a day trip to the Grand Canyon.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/flying_2.jpg&#34;&gt;
+Over the Napa, CA area during my instrument training.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;http://localhost:1313/img/flying_3.jpg&#34;&gt;
+Flying over the Charles River in Boston, MA in a Piper Warrior.&lt;/p&gt;
+</content>
+    </item>
+    
+    <item>
+      <title>Old Content</title>
+      <link>http://localhost:1313/portfolio/old/</link>
+      <pubDate>Fri, 02 Feb 2024 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/portfolio/old/</guid>
+      <description>This is a collection of things I made mostly before college, that lived in some form on my old site but not here.
+Grooks The Grooks are a collection of my favorite short poems by the author Piet Hein. I posted one of these each day for my friends, and archived the content in case discord stops storing old messages one day.
+DCI I attended the Alexander Dawson School for High School.</description>
+      <content>&lt;p&gt;This is a collection of things I made mostly before college, that lived in some form on my old site but not here.&lt;/p&gt;
+&lt;h2 id=&#34;grooks&#34;&gt;Grooks&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&#34;http://localhost:1313/old/grooks.html&#34;&gt;The Grooks&lt;/a&gt; are a collection of my favorite short poems by the author Piet Hein. I posted one of these each day for my friends, and archived the content in case discord stops storing old messages one day.&lt;/p&gt;
+&lt;h2 id=&#34;dci&#34;&gt;DCI&lt;/h2&gt;
+&lt;p&gt;I attended the Alexander Dawson School for High School. While I was there, I was the first student to complete the Distinction in Innovation program and associated award. This process involved building a number of projects, both for classes and for fun. I created a portfolio in the form of a &lt;a href=&#34;https://github.com/jlefkoff/DCI-Jonah/wiki&#34;&gt;github wiki&lt;/a&gt;, and you can view all of the pieces there.&lt;/p&gt;
+</content>
+    </item>
+    
+  </channel>
+</rss>
